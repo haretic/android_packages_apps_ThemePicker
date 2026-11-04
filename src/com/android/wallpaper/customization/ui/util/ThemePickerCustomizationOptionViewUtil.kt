@@ -196,6 +196,32 @@ constructor(
                         )
                     }
                 }
+        }.also { entries ->
+            if (
+                (optionContainer.parent as? View)?.id ==
+                    com.android.wallpaper.R.id.wheel_styles_content
+            ) {
+                entries.forEach { (_, entry) -> compactWheelEntry(entry) }
+            }
+        }
+    }
+
+    private fun compactWheelEntry(entry: View) {
+        val density = entry.resources.displayMetrics.density
+        val horizontalPadding = (12 * density).toInt()
+        val verticalPadding = (4 * density).toInt()
+        entry.setPaddingRelative(
+            horizontalPadding,
+            verticalPadding,
+            horizontalPadding,
+            verticalPadding,
+        )
+        entry.minimumHeight = (56 * density).toInt()
+        entry.findViewById<View>(R.id.option_entry_icon_container)?.let { icon ->
+            icon.layoutParams = icon.layoutParams.apply {
+                width = (48 * density).toInt()
+                height = (48 * density).toInt()
+            }
         }
     }
 

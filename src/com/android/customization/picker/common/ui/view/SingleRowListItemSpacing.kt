@@ -78,6 +78,10 @@ class SingleRowListItemSpacing(
         val dividerTop = parent.paddingTop + (parentPaddedHeight - actualDrawableHeight) / 2
         val dividerBottom = dividerTop + actualDrawableHeight
 
+        // A divider after the last item separates it from nothing, as when a device's clocks
+        // all have presets
+        if (dividerIndex >= (parent.adapter?.itemCount ?: 0) - 1) return
+
         val isRtl = parent.layoutManager?.layoutDirection == View.LAYOUT_DIRECTION_RTL
 
         for (i in 0 until parent.childCount) {

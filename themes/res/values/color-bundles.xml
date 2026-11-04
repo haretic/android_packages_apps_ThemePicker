@@ -16,6 +16,7 @@
   -->
 <resources>
     <array name="color_bundles">
+        <item>haretic</item>
         <item>default</item>
         <item>wht</item>
         <item>bue</item>

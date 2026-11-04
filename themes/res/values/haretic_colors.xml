@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<resources>
+    <!-- haretic: the R1's orange (Pantone Mandarin Orange), itself on the dark theme's accents -->
+    <color name="color_primary_haretic">#EC6A37</color>
+    <color name="color_secondary_haretic">#EC6A37</color>
+    <string name="bundle_name_haretic" translatable="false">haretic</string>
+    <string name="color_style_haretic" translatable="false">HARETIC</string>
+</resources>

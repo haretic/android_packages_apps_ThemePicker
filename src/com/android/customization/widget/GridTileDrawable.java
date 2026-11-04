@@ -19,7 +19,9 @@ public class GridTileDrawable extends Drawable {
 
     // Path is expected configuration in following dimension: [100 x 100]))
     private static final float PATH_SIZE = 100f;
-    private static final float SPACE_BETWEEN_ICONS = 6f;
+    // Space round each icon, as a share of its cell: a fixed one leaves dots in a cell as small
+    // as a one-column list's
+    private static final float SPACE_BETWEEN_ICONS = 0.1f;
     private final int mCols;
     private final int mRows;
     private final Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -27,6 +29,9 @@ public class GridTileDrawable extends Drawable {
     private final Path mTransformedPath;
     private final Matrix mScaleMatrix;
     private float mCellSize = -1f;
+    private float mSpace;
+    private float mLeft;
+    private float mTop;
 
     public GridTileDrawable(int cols, int rows, String path) {
         mCols = cols;
@@ -40,23 +45,25 @@ public class GridTileDrawable extends Drawable {
     @Override
     protected void onBoundsChange(Rect bounds) {
         super.onBoundsChange(bounds);
-        int longestSide = Math.max(mRows, mCols);
-        mCellSize = (float) bounds.width() / longestSide;
+        // Square cells that fit both ways, the grid centred, so a list that is one column wide
+        // isn't drawn down the left edge
+        mCellSize = Math.min((float) bounds.width() / mCols, (float) bounds.height() / mRows);
+        mSpace = mCellSize * SPACE_BETWEEN_ICONS;
+        mLeft = bounds.left + (bounds.width() - mCellSize * mCols) / 2;
+        mTop = bounds.top + (bounds.height() - mCellSize * mRows) / 2;
 
-        float scaleFactor = (mCellSize - 2 * SPACE_BETWEEN_ICONS) / PATH_SIZE;
+        float scaleFactor = (mCellSize - 2 * mSpace) / PATH_SIZE;
         mScaleMatrix.setScale(scaleFactor, scaleFactor);
         mShapePath.transform(mScaleMatrix, mTransformedPath);
     }
 
     @Override
     public void draw(Canvas canvas) {
-        double size = getBounds().width();
-
         for (int r = 0; r < mRows; r++) {
             for (int c = 0; c < mCols; c++) {
                 int saveCount = canvas.save();
-                float y = (float) ((r * size / mRows) + SPACE_BETWEEN_ICONS);
-                float x = (float) ((c * size / mCols) + SPACE_BETWEEN_ICONS);
+                float y = mTop + r * mCellSize + mSpace;
+                float x = mLeft + c * mCellSize + mSpace;
                 canvas.translate(x, y);
                 canvas.drawPath(mTransformedPath, mPaint);
                 canvas.restoreToCount(saveCount);

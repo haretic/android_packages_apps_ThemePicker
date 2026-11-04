@@ -60,7 +60,7 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
         this.title = title;
         mIsCurrent = isCurrent;
         mIconShapePath = iconShapePath;
-        mTileDrawable = new GridTileDrawable(rows, cols, mIconShapePath);
+        mTileDrawable = new GridTileDrawable(cols, rows, mIconShapePath);
         this.name = name;
         this.gridIconId = gridIconId;
         this.rows = rows;
@@ -83,7 +83,7 @@ public class GridOption implements CustomizationOption<GridOption>, Parcelable {
         cols = in.readInt();
         previewImageUri = in.readParcelable(Uri.class.getClassLoader());
         previewPagesCount = in.readInt();
-        mTileDrawable = new GridTileDrawable(rows, cols, mIconShapePath);
+        mTileDrawable = new GridTileDrawable(cols, rows, mIconShapePath);
     }
 
     @Override

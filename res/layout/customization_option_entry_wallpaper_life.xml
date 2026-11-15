@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The haretic Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- The living wallpaper's switch: the row is what is pressed, the switch shows the state -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/customization_option_entry_horizontal_padding"
+    android:paddingVertical="@dimen/customization_option_entry_vertical_padding_large"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/option_entry_title"
+        style="@style/CustomizationOptionEntryTitleTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/wallpaper_life_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/option_entry_switch"
+        app:layout_constraintBottom_toTopOf="@+id/option_entry_description"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/option_entry_description"
+        style="@style/CustomizationOptionEntrySubtitleTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/wallpaper_life_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/option_entry_switch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/option_entry_title" />
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/option_entry_switch"
+        style="@style/SettingslibSwitchStyle.Expressive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false"
+        android:importantForAccessibility="no"
+        android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

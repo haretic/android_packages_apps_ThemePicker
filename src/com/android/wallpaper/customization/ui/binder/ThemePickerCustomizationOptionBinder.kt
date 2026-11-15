@@ -59,6 +59,7 @@ import com.android.themepicker.R
 import com.android.wallpaper.config.BaseFlags
 import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerHomeCustomizationOption
 import com.android.wallpaper.customization.ui.util.ThemePickerCustomizationOptionUtil.ThemePickerLockCustomizationOption
+import com.android.wallpaper.customization.ui.util.WallpaperLife
 import com.android.wallpaper.customization.ui.viewmodel.ThemePickerCustomizationOptionsData
 import com.android.wallpaper.customization.ui.viewmodel.ThemePickerCustomizationOptionsViewModel
 import com.android.wallpaper.picker.common.icon.ui.viewbinder.IconViewBinder
@@ -208,6 +209,12 @@ constructor(private val defaultCustomizationOptionsBinder: DefaultCustomizationO
             optionShortcutIcon1 = optionShortcut.requireViewById(R.id.option_entry_icon_1)
             optionShortcutIcon2 = optionShortcut.requireViewById(R.id.option_entry_icon_2)
         }
+
+        // haretic: the living wallpaper's switch, a row of its own with nothing behind it
+        homeScreenCustomizationOptionEntries
+            .firstOrNull { it.first == ThemePickerHomeCustomizationOption.WALLPAPER_LIFE }
+            ?.second
+            ?.let { WallpaperLife.bind(it) }
 
         val optionLockScreenNotificationsSettings: View =
             lockScreenCustomizationOptionEntries

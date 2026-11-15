@@ -577,6 +577,14 @@
     -->
     <string name="lock_screen_notifications_section_title">Notifications on lock screen</string>
 
+    <!-- haretic: title of the switch for the living wallpaper, in the list under the previews [CHAR LIMIT=32] -->
+    <string name="wallpaper_life_title">Living wallpaper</string>
+    <!-- haretic: what the living wallpaper's switch does [CHAR LIMIT=80] -->
+    <string name="wallpaper_life_description">The hares move with the wheel and a tilt</string>
+    <!-- haretic: spoken state of the living wallpaper's switch -->
+    <string name="wallpaper_life_on">On</string>
+    <string name="wallpaper_life_off">Off</string>
+
 
     <!--
     Description for a section in a list of sections that leads to notifications on lock screen
